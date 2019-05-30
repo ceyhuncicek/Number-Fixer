@@ -1,12 +1,18 @@
 
 
 
+function NumberFixer() {
+  let numbers = document.getElementById("PhoneTextArea").value.split('\n');
 
-function startfixer() {
-  var numaralar = document.getElementById("PhoneTextArea").value;
-  //numaralar = numaralar.replace(/[^a-zA-Z0-9]/g, '');
-  var numara = numaralar.split(" ");
-  numara = numara.filter(Boolean);
+  // It deletes all characters except numbers
+    for (i = 0; i <= numbers.length - 1; i++){
+      numbers[i] = numbers[i].replace(/[^0-9]/gm, "");
+  };
+  
+
+  // Filter empty arrays
+  numbers = numbers.filter(Boolean);
+
 
   var filename = document.getElementById("NameTextArea").value;
   var filenumber = document.getElementById("NumberTextArea").value;
@@ -14,70 +20,49 @@ function startfixer() {
   var counter = filenumber;
 
 
-  console.log(numaralar);
+
 
   
-
-      for (i = 0; i <= numara.length - 1; i++){
-          if (numara[i].indexOf('9005')) {
-            numara[i] = numara[i].replace('9005', '905');
-
-          }
-
-          if (numara[i].startsWith('9005')) {
-            numara[i] = numara[i].replace('9005', '905');
+// Custom filters. According to number data, patters are founded and applied.
+      for (i = 0; i <= numbers.length - 1; i++){
+          if (numbers[i].indexOf('9005')) {
+            numbers[i] = numbers[i].replace('9005', '905');
 
           }
 
-          if (numara[i].startsWith('+')) {
-            numara[i] = numara[i].replace('+', '');
+          if (numbers[i].startsWith('9005')) {
+            numbers[i] = numbers[i].replace('9005', '905');
 
           }
 
-          if (numara[i].startsWith('(')) {
-            numara[i] = numara[i].replace('(', '');
-
-            }
-
-            if (numara[i].indexOf(')')) {
-              numara[i] = numara[i].replace(')', '');
-  
-              }
-
-              if (numara[i].indexOf('-')) {
-                numara[i] = numara[i].replace('-', '');
-    
-                }
-
-          if (numara[i].startsWith('5')) {
-            numara[i] = numara[i].replace('5', '905');
+          if (numbers[i].startsWith('5')) {
+            numbers[i] = numbers[i].replace('5', '905');
 
             }
          
-          if (numara[i].length > 15) {
-            numara[i] = numara[i].slice(0, 12);
+          if (numbers[i].length > 15) {
+            numbers[i] = numbers[i].slice(0, 12);
           }
 
-          if (numara[i].length < 12) {
-            numara[i] = "";
+          if (numbers[i].length < 12) {
+            numbers[i] = "";
           }
         }
 
-      numara = numara.filter(Boolean);
 
-      for (i = 0; i <= numara.length - 1; i++){
+    // Filter empty arrays
+       numbers = numbers.filter(Boolean);
+      
+    // add + start of numbers.
+        for (i = 0; i <= numbers.length - 1; i++){
 
-          numara[i] = "+" + numara[i];
+          numbers[i] = "+" + numbers[i];
 
       }
 
 
 
-      for (i = 0; i <= numara.length - 1; i++){
-        
-        if (numara[i].length < 13) {
-          numara[i] = "";
-        }
+      for (i = 0; i <= numbers.length - 1; i++){
       
         // Find a <table> element with id="NumberListTable":
         var table = document.getElementById("NumberListTable");
@@ -92,42 +77,39 @@ function startfixer() {
 
         // Add some text to the new cells:
         cell1.innerHTML = filename + "000" + counter++;
-        cell2.innerHTML = numara[i];
+        cell2.innerHTML = numbers[i];
 
       }
 
-      CreateVcard(filename, filenumber, numara);
+      CreateVcard(filename, filenumber, numbers);
 
 
 }
 
-  function CreateVcard(filename, filenumber, numara) {
+  function CreateVcard(filename, filenumber, numbers) {
     
     firstnumber = filenumber;
 
-    for (i = 0; i <= numara.length - 1; i++){
+    for (i = 0; i <= numbers.length - 1; i++){
 
       filenumber++;
-      numara[i] = "BEGIN:VCARD\nVERSION:3.0\nFN:" + filename + "000" + filenumber + "\nN:;" + filename + "000" + filenumber + ";;;\nitem1.TEL:" + numara[i] + "\nitem1.X-ABLabel:\nEND:VCARD\n";
+      numbers[i] = "BEGIN:VCARD\nVERSION:3.0\nFN:" + filename + "000" + filenumber + "\nN:;" + filename + "000" + filenumber + ";;;\nitem1.TEL:" + numbers[i] + "\nitem1.X-ABLabel:\nEND:VCARD\n";
 
     }
 
-    numara = numara.join("");
+    numbers = numbers.join("");
 
     filename = filename + "000" + firstnumber + "-" + filename + "000" + filenumber;
-    console.log(numara);
-    console.log(filename);
 
-    download(filename, numara);
+    download(filename, numbers);
   }
 
 
-  function download(filename, numara) {
+  function download(filename, numbers) {
     var element = document.getElementById("downloadbutton");
-    element.setAttribute('href', 'data:text/x-vcard;charset=utf-8,' + encodeURIComponent(numara));
+    element.setAttribute('href', 'data:text/x-vcard;charset=utf-8,' + encodeURIComponent(numbers));
     element.setAttribute('download', filename);
   
-    //element.style.display = 'none';
     //document.body.appendChild(element);
   
     //element.click();
