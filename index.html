@@ -1,111 +1,76 @@
-<!doctype html>
-<html class="no-js" lang="">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
+  <!-- Required meta tags -->
   <meta charset="utf-8">
-  <title></title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link rel="manifest" href="site.webmanifest">
-  <link rel="apple-touch-icon" href="icon.png">
-  <!-- Place favicon.ico in the root directory -->
-
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-
-  <meta name="theme-color" content="#fafafa">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Phone number fixer</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="shortcut icon" href="images/favicon.png" />
 </head>
 
 <body>
-  <!--[if IE]>
-    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-  <![endif]-->
+  <div class="main-panel">
+    <div class="content-wrapper">
+      <div class="col-lg-12 stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Number Input</h4>
+            <p class="card-description">
+              Delete empty spaces from numbers before submit
+            </p>
+            <div class="form-group">
+              <label for="PhoneTextArea">Phone numbers</label>
+              <input type="text" class="form-control" id="PhoneTextArea" placeholder="Phone numbers">
+            </div>
+            <div class="form-group">
+              <label for="NameTextArea">Record name</label>
+              <input type="text" class="form-control" id="NameTextArea" placeholder="Record name">
+            </div>
+            <div class="form-group">
+              <label>Count number</label>
+              <input type="int" class="form-control" id="NumberTextArea" placeholder="Count number">
+            </div>
+            <button type="submit" class="btn btn-success mr-2" onclick="startfixer();">Submit</button>
+            <a id="downloadbutton"> <button type="button" class="btn btn-primary btn-fw">Download</button> </a>
+          </div>
+        </div>
+      </div>
+      </br>
 
-
-    <!-- Content BEGIN -->
-
-
-  <h4 class="card-title">Number Fixer</h4>
-  <p class="card-description">
-  </p>
-
-<div class="form-group">
-    <label for="PhoneTextArea">Numbers:</label>
-    <textarea class="form-control" rows="5" id="PhoneTextArea"></textarea>
-  </div>
-<div class="form-group">
-    <label for="NameTextArea">PreName</label>
-    <input type="text" class="form-control" id="NameTextArea" placeholder="Last Name">
-  </div>
-  <div class="form-group">PreNumber</label>
-      <input type="int" class="form-control" id="NumberTextArea" placeholder="Last Name">
-    </div>
-<button type="submit" class="btn btn-success mr-2" onclick="NumberFixer();">Submit</button>
-<button class="btn btn-light">Cancel</button>
-
-</br> 
-</br> 
-
-<div class="template-demo">
-
-<a id="downloadbutton"> <button type="button" class="btn btn-primary btn-fw">Download</button> </a>
-</div>
-
-    <!-- Content END-->
-
-    <!-- Table BEGIN-->
-
-
-<div class="main-panel">
-  <div class="content-wrapper">
-    <div class="col-lg-12 stretch-card">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title"> Fixed Number List</h4>
-          <p class="card-description">
-           
-          </p>
-          <div class="table-responsive">
-            <table id="NumberListTable" class="table table-bordered">
-              <thead>
-                <tr>
-                  <th>
-                  Name
-                  </th>
-                  <th>
-                  Number
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-
-                <tr class="table-info">
-                  <td>
-                  </td>
-                  <td>
-                  </td>
-                </tr>
-
-              </tbody>
-            </table>
+      <div class="col-lg-12 stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title"> Fixed Number List</h4>
+            <p class="card-description"></p>
+            <div class="table-responsive">
+              <table id="NumberListTable" class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>
+                      Name
+                    </th>
+                    <th>
+                      Number
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="table-info">
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
-
-
-
-    <!-- Table END-->
-
-  <script src="js/phonefixer.js"></script>
-  <script src="js/plugins.js"></script>
-  <script src="js/main.js"></script>
-
+    <script src="./js/phonefixer.js"></script>
 </body>
 
 </html>
